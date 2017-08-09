@@ -9,7 +9,10 @@ const Schema = mongoose.Schema;
 const entrySchema = new Schema({
   // Name must be a string and a name is required!
   // YOU CAN GOOGLE THESE MONGOOSE SCHEMA TYPES
-  entry: { type: String, require: true }
+  entry: { type: String, require: true },
+  weight: { type: Number, require: true}
 })
 
-module.exports = mongoose.model('Entries', entrySchema)
+// This is showing how you can nest schema!!!  So you attach things to things
+
+module.exports = mongoose.model('Entries', entrySchema);
