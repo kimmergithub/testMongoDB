@@ -6,7 +6,7 @@ let calcifersReply = '';
 let greetingCounter = 0;
 
 // (function(module) {
-  $('#response-accuracy-feedback-div').hide();
+$('#response-accuracy-feedback-div').hide();
 
 $('#send-statement').click(function (event) {
   event.preventDefault();

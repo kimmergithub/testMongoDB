@@ -5,6 +5,7 @@ const expect = require('chai').expect;
 const request = require('superagent');
 // this is the const list example
 const Entry = require('../model/responses-data');
+const EntryRequire = require('../route/entry-router');
 // this is a note thing... I don't understand yet.
 // const Note = require('../public/scripts/models/note')
 
@@ -18,51 +19,83 @@ const PORT = process.env.PORT || 3000;
 
 // this runs the server === npm start === make sure you are not running two servers.
 // error PORT :::3000
-require('../server');
+require('../lib/server');
 
 const url = `http://localhost:${PORT}`;
 
 let tempEntry;
+let exampleEntry;
 
-const exampleEntry = {
-  entry: 'this is a test response'
-}
+// const exampleEntry = {
+//   entry: 'this is a test response'
+// }
 
-describe('Response Route', function(){
-  describe('POST: /api/responses-data/responses-dataID', function(){
-    describe('with a valid responses-data id and response', () => {
-      before( done => {
-        new Entry(exampleEntry).save()
-        .then( entry => {
-          this.tempEntry = entry;
-          done();
-        })
-        .catch(done);
-      });
 
-      after( done => {
-        Promise.all([
-          Entry.remove({})
-        ])
-        .then( () => done())
-        .catch(done);
-      });
+//      THIS IS THE MARIO TEST
 
-      it('should return an Entry', done => {
-        request.post(`${url}//api/responses/${this.tempEntry._id}`)
-        .send(exampleEntry)
-        .end((err, res) => {
-          console.log('This is our RES.BODY hawa console = ' + res);
-          if (err) return done(err);
-          // THIS IS OUR TEST...
-          expect(res.body.entry).to.equal(exampleEntry.Entry);
-          expect(res.body.entryID).to.equal(this.tempEntry._id.toString());
-          done();
-        });
-      });
+// Describe our tests
+describe('Saving records', function(){
+
+  // Create tests
+  it('Saves a record to the database', function(done){
+
+    const exampleEntry = new Entry({
+      entry: 'this is a test response',
+      weight: 50
     });
+
+    exampleEntry.save().then(function(){
+      assert(!exampleEntry.isNew);
+      done();
+    });
+
   });
+
 });
+
+
+
+//            THIS WAS WHAT I HAD BEFORE
+
+
+// describe('Response Route', function(){
+//   describe('POST: /api/responses-data/responses-dataID', function(){
+//     describe('with a valid responses-data id and response', () => {
+//       before( done => {
+//           //console search
+//         new Entry(exampleEntry).save()
+//           //console search
+//
+//         .then( entry => {
+//           this.tempEntry = entry;
+//           done();
+//         })
+//         .catch(done);
+//       });
+//
+//       after( done => {
+//         Promise.all([
+//           Entry.remove({})
+//         ])
+//         .then( () => done())
+//         .catch(done);
+//       });
+//
+//       it('should return an Entry', done => {
+//         request.post(`${url}//api/responses/${this.tempEntry._id}`)
+//         .send(exampleEntry)
+//         .end((err, res) => {
+//           console.log('This is our RES.BODY hawa console = ' + res);
+//           if (err) return done(err);
+//           // THIS IS OUR TEST...
+//           expect(res.body.entry).to.equal(exampleEntry.Entry);
+//           expect(res.body.entryID).to.equal(this.tempEntry._id.toString());
+//           done();
+//         });
+//       });
+//     });
+//   });
+// });
 //
 // // Describe test
 // describe('Saving records', function(){

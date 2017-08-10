@@ -10,7 +10,7 @@ const entrySchema = new Schema({
   // Name must be a string and a name is required!
   // YOU CAN GOOGLE THESE MONGOOSE SCHEMA TYPES
   entry: { type: String, require: true },
-  weight: { type: Number, require: true}
+  weight: { type: Number, require: false}
 })
 
 // This is showing how you can nest schema!!!  So you attach things to things

@@ -6,34 +6,42 @@ MAKE SURE YOU ====
 =================
 npm install
 
+npm install uuid --save
+npm nodemon === makes it so we don't have to repeatedly restart our servers again and again to update stuff... 
+
 {
   "name": "301-final_project",
   "version": "1.0.0",
   "description": "We know that in todays world it can be hard to choose what to spend your time watching. With all of the different platforms and channels vying for your attention it can get confusing. Here at Pick-A-Flick we've introduced a novel app with a few helpful functions to make sure you can spend less time deciding and more time watching.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "DEBUG='note*' mocha",
-    "start": "DEBUG='note' node server.js"
+    "start": "node lib/server.js",
+    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
+    "stop-db": "killall mongod",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/esack7/301-Final_Project.git"
+    "url": ""
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/esack7/301-Final_Project/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/esack7/301-Final_Project#readme",
+  "homepage": "",
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "debug": "^2.6.8",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
+    "http-errors": "^1.6.2",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.5",
-    "morgan": "^1.8.2"
+    "morgan": "^1.8.2",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
